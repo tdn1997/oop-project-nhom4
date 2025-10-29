@@ -1,15 +1,15 @@
-package oop.project.nhom4;
+package oop.project.nhom4.model;
 
-public class Khachhang {
+public class Consumer {
 	private String id;
 	private String name;
-	private double phone;
+	private String phone;
 	private String dateOfBirth;
 	
-	public Khachhang() {
+	public Consumer() {
 	}
 
-	public Khachhang(String id, String name, double phone, String dateOfBirth) {
+	public Consumer(String id, String name, String phone, String dateOfBirth) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -33,9 +33,13 @@ public class Khachhang {
 		this.name = name;
 	}
 
-	public double getPhone() {
+	public String getPhone() {
 		return phone;
 	}
+        public void setPhone(String phone) {
+                this.phone = phone;
+        }
+        
 	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
