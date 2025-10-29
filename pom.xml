@@ -8,7 +8,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>24</maven.compiler.release>
-        <exec.mainClass>oop.project.nhom4.Nhom4</exec.mainClass>
+        <exec.mainClass>oop.project.nhom4.App</exec.mainClass>
     </properties>
 
     <dependencies>
