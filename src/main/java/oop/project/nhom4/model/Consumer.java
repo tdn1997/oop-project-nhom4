@@ -17,6 +17,7 @@ public class Consumer {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+  // getters & setters
 	public String getId() {
 		return id;
 	}
