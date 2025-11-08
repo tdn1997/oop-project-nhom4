@@ -2,7 +2,7 @@ package oop.project.nhom4.view;
 
 import java.awt.event.ActionListener;
 import java.util.List;
-import oop.project.nhom4.model.Consumer;
+import oop.project.nhom4.model.Customer;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -236,11 +236,11 @@ public class Index extends JFrame {
         return panel;
     }
     
-    public void updateTable(List<Consumer> customers) {
+    public void updateTable(List<Customer> customers) {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"ID", "Name", "Phone", "DateOfBirth"});
 
-        for (Consumer kh : customers) {
+        for (Customer kh : customers) {
             model.addRow(new Object[]{
                 kh.getId(),
                 kh.getName(),
@@ -291,7 +291,7 @@ public class Index extends JFrame {
         sidebarTitleLabel.setText("Thông Tin Khách Hàng");
     }
 
-    public Consumer getCustomerFromInput() {
+    public Customer getCustomerFromInput() {
         String id = tfId.getText().trim().toUpperCase();
         String name = tfName.getText().trim();
         String dateOfBirth = tfDateOfBirth.getText().trim();
@@ -307,7 +307,7 @@ public class Index extends JFrame {
             return null;
         }
 
-        return new Consumer(id, name, phone, dateOfBirth);
+        return new Customer(id, name, phone, dateOfBirth);
     }
 
     public String getSelectedCustomerId() {

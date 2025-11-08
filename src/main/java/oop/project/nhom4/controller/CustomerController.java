@@ -13,8 +13,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
-import oop.project.nhom4.dao.ConsumerDAO;
-import oop.project.nhom4.model.Consumer;
+import oop.project.nhom4.dao.CustomerDAO;
+import oop.project.nhom4.model.Customer;
 import oop.project.nhom4.view.Index;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -24,19 +24,19 @@ import java.awt.Dimension;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
-public class ConsumerController implements ActionListener {
+public class CustomerController implements ActionListener {
 
     private final Index view;
-    private final ConsumerDAO dao;
+    private final CustomerDAO dao;
 
-    public ConsumerController(Index view, ConsumerDAO dao) {
+    public CustomerController(Index view, CustomerDAO dao) {
         this.view = view;
         this.dao = dao;
     }
 
     // Phương thức để tải dữ liệu ban đầu
     public void loadDataToView() {
-        List<Consumer> customers = dao.getAll();
+        List<Customer> customers = dao.getAll();
         view.updateTable(customers);
     }
 
@@ -89,7 +89,7 @@ public class ConsumerController implements ActionListener {
     }
 
     private void handleSave() {
-        Consumer kh = view.getCustomerFromInput();
+        Customer kh = view.getCustomerFromInput();
         if (kh == null) {
             return;
         }
@@ -134,7 +134,7 @@ public class ConsumerController implements ActionListener {
 
     private void handleSearch() {
         String[] searchInfo = view.getSearchInfo();
-        List<Consumer> customers = dao.search(searchInfo[0], searchInfo[1]);
+        List<Customer> customers = dao.search(searchInfo[0], searchInfo[1]);
         view.updateTable(customers);
     }
 
