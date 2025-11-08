@@ -1,15 +1,15 @@
 package oop.project.nhom4.model;
 
-public class Consumer {
+public class Customer {
 	private String id;
 	private String name;
 	private String phone;
 	private String dateOfBirth;
 	
-	public Consumer() {
+	public Customer() {
 	}
 
-	public Consumer(String id, String name, String phone, String dateOfBirth) {
+	public Customer(String id, String name, String phone, String dateOfBirth) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -17,6 +17,7 @@ public class Consumer {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+  // getters & setters
 	public String getId() {
 		return id;
 	}

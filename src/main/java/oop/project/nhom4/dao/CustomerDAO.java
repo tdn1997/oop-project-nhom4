@@ -5,31 +5,31 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import oop.project.nhom4.model.Consumer;
+import oop.project.nhom4.model.Customer;
 
-public class ConsumerDAO {
+public class CustomerDAO {
 
     private final Connection connection;
-    private final String table = "consumer";
+    private final String table = "customer";
 
     // Nhận kết nối từ bên ngoài
-    public ConsumerDAO(Connection connection) {
+    public CustomerDAO(Connection connection) {
         this.connection = connection;
     }
 
-    private List<Consumer> mapResultSetToKhachhangList(ResultSet rs) throws SQLException {
-        List<Consumer> customers = new ArrayList<>();
+    private List<Customer> mapResultSetToKhachhangList(ResultSet rs) throws SQLException {
+        List<Customer> customers = new ArrayList<>();
         while (rs.next()) {
             String id = rs.getString("id");
             String name = rs.getString("name");
             String phone = rs.getString("phone");
             String dob = rs.getString("date_of_birth");
-            customers.add(new Consumer(id, name, phone, dob));
+            customers.add(new Customer(id, name, phone, dob));
         }
         return customers;
     }
 
-    public List<Consumer> getAll() {
+    public List<Customer> getAll() {
         String sqlCommand = "SELECT * FROM " + table;
         try (Statement st = connection.createStatement();
              ResultSet rs = st.executeQuery(sqlCommand)) {
@@ -50,7 +50,7 @@ public class ConsumerDAO {
         }
     }
 
-    public void insert(Consumer s) {
+    public void insert(Customer s) {
         String sqlCommand = "INSERT INTO " + table + " (id, name, phone, `date_of_birth`) VALUES (?, ?, ?, ?)";
         try (PreparedStatement pst = connection.prepareStatement(sqlCommand)) {
             pst.setString(1, s.getId());
@@ -64,7 +64,7 @@ public class ConsumerDAO {
     }
 
     // Phương thức update khách hàng 
-    public void updateId(Consumer s) {
+    public void updateId(Customer s) {
         String sqlCommand = "UPDATE " + table + " SET name = ?, phone = ?, `date_of_birth` = ? WHERE id = ?";
         try (PreparedStatement pst = connection.prepareStatement(sqlCommand)) {
             pst.setString(1, s.getName());
@@ -77,7 +77,7 @@ public class ConsumerDAO {
         }
     }
 
-    public List<Consumer> search(String columnName, String query) {
+    public List<Customer> search(String columnName, String query) {
         String safeColumnName = columnName;
         if (columnName.equals("date_of_birth")) {
             safeColumnName = "`date_of_birth`"; 

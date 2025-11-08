@@ -3,8 +3,8 @@ package oop.project.nhom4;
 import java.sql.Connection;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import oop.project.nhom4.controller.ConsumerController;
-import oop.project.nhom4.dao.ConsumerDAO;
+import oop.project.nhom4.controller.CustomerController;
+import oop.project.nhom4.dao.CustomerDAO;
 import oop.project.nhom4.database.DatabaseConnectionManager;
 import oop.project.nhom4.view.Index;
 
@@ -28,13 +28,13 @@ public class App {
             }
 
             // 2. Khởi tạo DAO (truyền kết nối vào)
-            ConsumerDAO khachhangDAO = new ConsumerDAO(connection);
+            CustomerDAO khachhangDAO = new CustomerDAO(connection);
 
             // 3. Khởi tạo View
             Index myFrame = new Index();
 
             // 4. Khởi tạo Controller (truyền View và DAO vào)
-            ConsumerController controller = new ConsumerController(myFrame, khachhangDAO);
+            CustomerController controller = new CustomerController(myFrame, khachhangDAO);
 
             // 5. Kết nối View với Controller
             myFrame.setController(controller);
