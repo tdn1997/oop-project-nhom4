@@ -45,31 +45,31 @@ public class CustomerController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         switch (command) {
-            case "Add":
+            case "Thêm":
                 view.showAddMode();
                 break;
-            case "Update":
+            case "Sửa":
                 view.showUpdateMode();
                 break;
-            case "Delete":
+            case "Xóa":
                 handleDelete();
                 break;
-            case "Ok":
+            case "OK":
                 handleSave();
                 break;
-            case "Cancel":
+            case "Hủy":
                 view.cancelAction();
                 break;
-            case "Search":
+            case "Tìm":
                 handleSearch();
                 break;
-            case "Reset":
+            case "Làm mới":
                 handleReset();
                 break;
             case "Thống kê":
                 handleShowStats();
                 break;
-            case "Xuất file":
+            case "Xuất dữ liệu":
                 handleExport();
                 break;
         }
@@ -199,7 +199,7 @@ public class CustomerController implements ActionListener {
                     }
                     pw.println();
                 }
-                view.showMessage("Xuất file CSV thành công!");
+                view.showMessage("Xuất dữ liệu CSV thành công!");
             } catch (Exception e) {
                 e.printStackTrace();
                 view.showMessage("Có lỗi xảy ra khi xuất file!");
