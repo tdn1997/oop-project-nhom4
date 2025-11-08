@@ -7,6 +7,7 @@ import oop.project.nhom4.controller.CustomerController;
 import oop.project.nhom4.dao.CustomerDAO;
 import oop.project.nhom4.database.DatabaseConnectionManager;
 import oop.project.nhom4.view.Index;
+import oop.project.nhom4.view.Login;
 
 public class App {
 
@@ -18,32 +19,7 @@ public class App {
         }
 
         SwingUtilities.invokeLater(() -> {
-            // 1. Khởi tạo lớp kết nối
-            DatabaseConnectionManager myConnect = new DatabaseConnectionManager();
-            Connection connection = myConnect.getConnection();
-
-            if (connection == null) {
-                System.err.println("Không thể kết nối đến CSDL. Ứng dụng thoát.");
-                return;
-            }
-
-            // 2. Khởi tạo DAO (truyền kết nối vào)
-            CustomerDAO khachhangDAO = new CustomerDAO(connection);
-
-            // 3. Khởi tạo View
-            Index myFrame = new Index();
-
-            // 4. Khởi tạo Controller (truyền View và DAO vào)
-            CustomerController controller = new CustomerController(myFrame, khachhangDAO);
-
-            // 5. Kết nối View với Controller
-            myFrame.setController(controller);
-            
-            // 6. Controller hiển thị dữ liệu ban đầu
-            controller.loadDataToView();
-            
-            // 7. Hiển thị giao diện
-            myFrame.setVisible(true);
+            new Login().setVisible(true);
         });
     }
 }
