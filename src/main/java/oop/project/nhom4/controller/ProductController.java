@@ -1,34 +1,47 @@
 package oop.project.nhom4.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
-import oop.project.nhom4.dao.CustomerDAO;
-import oop.project.nhom4.model.Customer;
-import oop.project.nhom4.view.Index;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.general.DefaultPieDataset;
-import java.awt.Dimension;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
 
-public class ProductController implements ActionListener {
+import oop.project.nhom4.dao.ProductDAO;
+import oop.project.nhom4.model.Product;
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+public class ProductController {
+    private final ProductDAO productDAO;
+
+    public ProductController(Connection connection) {
+        this.productDAO = new ProductDAO(connection);
     }
 
+    public boolean create(String name, double price, String description, int stockQuantity) {
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        Product product = new Product(0, name, price, description, stockQuantity, now, now);
+        return productDAO.add(product);
+    }
+
+    public List<Product> getAll() {
+        return productDAO.getAll();
+    }
+
+    public Product getById(long id) {
+        return productDAO.getById(id);
+    }
+
+    public boolean update(long id, String name, double price, String description, int stockQuantity) {
+        Product product = productDAO.getById(id);
+        if (product == null)
+            return false;
+
+        product.setName(name);
+        product.setPrice(price);
+        product.setDescription(description);
+        product.setStockQuantity(stockQuantity);
+        product.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        return productDAO.update(product);
+    }
+
+    public boolean delete(long id) {
+        return productDAO.delete(id);
+    }
 }

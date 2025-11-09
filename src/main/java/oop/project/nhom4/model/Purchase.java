@@ -16,7 +16,7 @@ public class Purchase {
     }
 
     public Purchase(long id, String customerId, Timestamp purchaseDate, double totalAmount,
-                    String purchaseStatus, String paymentMethod, Timestamp createdAt, Timestamp updatedAt) {
+            String purchaseStatus, String paymentMethod, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.customerId = customerId;
         this.purchaseDate = purchaseDate;
@@ -31,6 +31,7 @@ public class Purchase {
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -38,6 +39,7 @@ public class Purchase {
     public String getCustomerId() {
         return customerId;
     }
+
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
@@ -45,6 +47,7 @@ public class Purchase {
     public Timestamp getPurchaseDate() {
         return purchaseDate;
     }
+
     public void setPurchaseDate(Timestamp purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
@@ -52,6 +55,7 @@ public class Purchase {
     public double getTotalAmount() {
         return totalAmount;
     }
+
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }
@@ -59,6 +63,7 @@ public class Purchase {
     public String getPurchaseStatus() {
         return purchaseStatus;
     }
+
     public void setPurchaseStatus(String purchaseStatus) {
         this.purchaseStatus = purchaseStatus;
     }
@@ -66,6 +71,7 @@ public class Purchase {
     public String getPaymentMethod() {
         return paymentMethod;
     }
+
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
@@ -73,6 +79,7 @@ public class Purchase {
     public Timestamp getCreatedAt() {
         return createdAt;
     }
+
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
@@ -80,6 +87,7 @@ public class Purchase {
     public Timestamp getUpdatedAt() {
         return updatedAt;
     }
+
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }

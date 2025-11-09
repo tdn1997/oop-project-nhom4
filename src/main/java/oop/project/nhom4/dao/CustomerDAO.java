@@ -1,10 +1,15 @@
 package oop.project.nhom4.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import oop.project.nhom4.model.Customer;
 
 public class CustomerDAO {
@@ -32,7 +37,7 @@ public class CustomerDAO {
     public List<Customer> getAll() {
         String sqlCommand = "SELECT * FROM " + table;
         try (Statement st = connection.createStatement();
-             ResultSet rs = st.executeQuery(sqlCommand)) {
+                ResultSet rs = st.executeQuery(sqlCommand)) {
             return mapResultSetToKhachhangList(rs);
         } catch (SQLException e) {
             System.err.println("select error: " + e.toString());
@@ -63,7 +68,7 @@ public class CustomerDAO {
         }
     }
 
-    // Phương thức update khách hàng 
+    // Phương thức update khách hàng
     public void updateId(Customer s) {
         String sqlCommand = "UPDATE " + table + " SET name = ?, phone = ?, `date_of_birth` = ? WHERE id = ?";
         try (PreparedStatement pst = connection.prepareStatement(sqlCommand)) {
@@ -80,7 +85,7 @@ public class CustomerDAO {
     public List<Customer> search(String columnName, String query) {
         String safeColumnName = columnName;
         if (columnName.equals("date_of_birth")) {
-            safeColumnName = "`date_of_birth`"; 
+            safeColumnName = "`date_of_birth`";
         }
 
         String sqlCommand = "SELECT * FROM " + table + " WHERE " + safeColumnName + " LIKE ?";
@@ -100,7 +105,7 @@ public class CustomerDAO {
         String sql = "SELECT `date_of_birth` FROM " + table;
 
         try (Statement st = connection.createStatement();
-             ResultSet rs = st.executeQuery(sql)) {
+                ResultSet rs = st.executeQuery(sql)) {
 
             while (rs.next()) {
                 String dob = rs.getString("date_of_birth");
@@ -115,13 +120,13 @@ public class CustomerDAO {
         }
         return yearCounts;
     }
-    
+
     public boolean isIdExists(String id) {
         String sql = "SELECT 1 FROM " + table + " WHERE id = ? LIMIT 1";
         try (PreparedStatement pst = connection.prepareStatement(sql)) {
             pst.setString(1, id);
             try (ResultSet rs = pst.executeQuery()) {
-                return rs.next(); 
+                return rs.next();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -129,4 +134,3 @@ public class CustomerDAO {
         }
     }
 }
-

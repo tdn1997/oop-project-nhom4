@@ -1,34 +1,55 @@
 package oop.project.nhom4.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
-import oop.project.nhom4.dao.CustomerDAO;
-import oop.project.nhom4.model.Customer;
-import oop.project.nhom4.view.Index;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.general.DefaultPieDataset;
-import java.awt.Dimension;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
 
-public class PurchaseController implements ActionListener {
+import oop.project.nhom4.dao.PurchaseDAO;
+import oop.project.nhom4.model.Purchase;
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+public class PurchaseController {
+    private final PurchaseDAO purchaseDAO;
+
+    public PurchaseController(Connection connection) {
+        this.purchaseDAO = new PurchaseDAO(connection);
     }
-    
+
+    public boolean create(String customerId, Timestamp purchaseDate, double totalAmount,
+            String purchaseStatus, String paymentMethod) {
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        Purchase purchase = new Purchase(0, customerId, purchaseDate, totalAmount,
+                purchaseStatus, paymentMethod, now, now);
+        return purchaseDAO.add(purchase);
+    }
+
+    public List<Purchase> getAll() {
+        return purchaseDAO.getAll();
+    }
+
+    public Purchase getById(long id) {
+        return purchaseDAO.getById(id);
+    }
+
+    public List<Purchase> getByCustomerId(String customerId) {
+        return purchaseDAO.getByCustomerId(customerId);
+    }
+
+    public boolean update(long id, String customerId, Timestamp purchaseDate, double totalAmount,
+            String purchaseStatus, String paymentMethod) {
+        Purchase purchase = purchaseDAO.getById(id);
+        if (purchase == null)
+            return false;
+
+        purchase.setCustomerId(customerId);
+        purchase.setPurchaseDate(purchaseDate);
+        purchase.setTotalAmount(totalAmount);
+        purchase.setPurchaseStatus(purchaseStatus);
+        purchase.setPaymentMethod(paymentMethod);
+        purchase.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        return purchaseDAO.update(purchase);
+    }
+
+    public boolean delete(long id) {
+        return purchaseDAO.delete(id);
+    }
 }

@@ -1,5 +1,6 @@
 package oop.project.nhom4.controller;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -7,22 +8,23 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
-import oop.project.nhom4.dao.CustomerDAO;
-import oop.project.nhom4.model.Customer;
-import oop.project.nhom4.view.Index;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
-import java.awt.Dimension;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
+
+import oop.project.nhom4.dao.CustomerDAO;
+import oop.project.nhom4.model.Customer;
+import oop.project.nhom4.view.Index;
 
 public class CustomerController implements ActionListener {
 
@@ -94,14 +96,14 @@ public class CustomerController implements ActionListener {
             return;
         }
 
-        // Kiểm tra Số điện thoại 
+        // Kiểm tra Số điện thoại
         String phone = kh.getPhone();
         if (!phone.matches("^\\d+$")) {
             view.showMessage("Số điện thoại không hợp lệ. Vui lòng chỉ nhập số.");
             return;
         }
 
-        // Kiểm tra định dạng Ngày sinh 
+        // Kiểm tra định dạng Ngày sinh
         String dob = kh.getDateOfBirth();
         if (dob != null && !dob.isEmpty()) {
             try {
@@ -114,7 +116,7 @@ public class CustomerController implements ActionListener {
             }
         }
 
-        // Kiểm tra trùng ID 
+        // Kiểm tra trùng ID
         if (!view.isUpdateMode()) {
             if (dao.isIdExists(kh.getId())) {
                 view.showMessage("ID khách hàng này đã tồn tại. Vui lòng nhập ID khác.");
@@ -177,7 +179,9 @@ public class CustomerController implements ActionListener {
             if (!fileToSave.getAbsolutePath().endsWith(".csv")) {
                 fileToSave = new File(fileToSave.getAbsolutePath() + ".csv");
             }
-            try (FileOutputStream fos = new FileOutputStream(fileToSave); OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8); PrintWriter pw = new PrintWriter(osw)) {
+            try (FileOutputStream fos = new FileOutputStream(fileToSave);
+                    OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
+                    PrintWriter pw = new PrintWriter(osw)) {
 
                 osw.write('\uFEFF'); // BOM for Excel
                 TableModel model = view.getTableModel();

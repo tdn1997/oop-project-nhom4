@@ -1,25 +1,48 @@
 package oop.project.nhom4.view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import oop.project.nhom4.model.Customer;
-import javax.swing.*;
+import java.util.Locale;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
-import java.awt.*;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
 import javax.swing.table.TableModel;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.text.Collator;
-import java.util.Locale;
+import javax.swing.table.TableRowSorter;
+
+import oop.project.nhom4.model.Customer;
 
 public class Index extends JFrame {
 
-    // Định nghĩa màu sắc và font chữ 
+    // Định nghĩa màu sắc và font chữ
     private final Color COLOR_BG = new Color(25, 25, 112);
     private final Color COLOR_PRIMARY = new Color(0, 0, 128);
     private final Color COLOR_SECONDARY = new Color(0, 120, 215);
@@ -35,7 +58,7 @@ public class Index extends JFrame {
     private JComboBox<String> cbSortOptions;
     private TableRowSorter<DefaultTableModel> sorter;
 
-    // Các nút bấm 
+    // Các nút bấm
     private JButton btnOk, btnCancel;
     private JButton btnAdd, btnUpdate, btnDelete;
     private JButton btnSearch, btnReset;
@@ -59,7 +82,7 @@ public class Index extends JFrame {
         add(splitPane);
     }
 
-    // Phương thức gắn controller 
+    // Phương thức gắn controller
     public void setController(ActionListener controller) {
         // Gắn controller cho tất cả các nút
         btnAdd.addActionListener(controller);
@@ -89,13 +112,13 @@ public class Index extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        String[] labels = {"ID Khách Hàng:", "Họ và Tên:", "Số Điện Thoại:", "Ngày Sinh (dd/mm/yyyy):"};
+        String[] labels = { "ID Khách Hàng:", "Họ và Tên:", "Số Điện Thoại:", "Ngày Sinh (dd/mm/yyyy):" };
         tfId = new JTextField();
         tfName = new JTextField();
         tfPhone = new JTextField();
         tfDateOfBirth = new JTextField();
 
-        JTextField[] textFields = {tfId, tfName, tfPhone, tfDateOfBirth};
+        JTextField[] textFields = { tfId, tfName, tfPhone, tfDateOfBirth };
         for (int i = 0; i < labels.length; i++) {
             JLabel label = new JLabel(labels[i]);
             label.setFont(FONT_LABEL);
@@ -192,7 +215,7 @@ public class Index extends JFrame {
         gbc.weightx = 0;
         panel.add(lbSearch, gbc);
 
-        cbSearchType = new JComboBox<>(new String[]{"ID", "Họ tên", "Ngày sinh"});
+        cbSearchType = new JComboBox<>(new String[] { "ID", "Họ tên", "Ngày sinh" });
         cbSearchType.setFont(searchFont);
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -203,15 +226,14 @@ public class Index extends JFrame {
         tfSearch.setFont(searchFont);
         tfSearch.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(180, 180, 180), 1, true),
-                BorderFactory.createEmptyBorder(5, 10, 5, 10)
-        ));
+                BorderFactory.createEmptyBorder(5, 10, 5, 10)));
         gbc.gridx = 2;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         panel.add(tfSearch, gbc);
 
         btnSearch = new JButton("Tìm");
-        
+
         btnSearch.setFont(searchFont);
         btnSearch.setPreferredSize(new Dimension(100, 35));
         gbc.gridx = 3;
@@ -256,14 +278,14 @@ public class Index extends JFrame {
 
     public void updateTable(List<Customer> customers) {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"ID", "Họ tên", "Số điện thoại (+84)", "Ngày sinh"});
+        model.setColumnIdentifiers(new String[] { "ID", "Họ tên", "Số điện thoại (+84)", "Ngày sinh" });
 
         for (Customer kh : customers) {
-            model.addRow(new Object[]{
-                kh.getId(),
-                kh.getName(),
-                kh.getPhone(),
-                kh.getDateOfBirth()
+            model.addRow(new Object[] {
+                    kh.getId(),
+                    kh.getName(),
+                    kh.getPhone(),
+                    kh.getDateOfBirth()
             });
         }
         table.setModel(model);
@@ -350,7 +372,7 @@ public class Index extends JFrame {
                 break;
         }
         String query = tfSearch.getText().trim();
-        return new String[]{columnName, query};
+        return new String[] { columnName, query };
     }
 
     public void clearSearchField() {
@@ -394,7 +416,7 @@ public class Index extends JFrame {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
         panel.setOpaque(false);
         panel.add(new JLabel("Sắp xếp theo:"));
-        String[] sortOptions = {"Mặc định", "Mới nhất", "Theo tên (A-Z)"};
+        String[] sortOptions = { "Mặc định", "Mới nhất", "Theo tên (A-Z)" };
         cbSortOptions = new JComboBox<>(sortOptions);
         panel.add(cbSortOptions);
 
