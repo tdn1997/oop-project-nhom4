@@ -1,51 +1,52 @@
 package oop.project.nhom4.model;
 
 public class Customer {
-	private String id;
-	private String name;
-	private String phone;
-	private String dateOfBirth;
-	
-	public Customer() {
-	}
+    private String id;
+    private String name;
+    private String phone;
+    private String dateOfBirth;
 
-	public Customer(String id, String name, String phone, String dateOfBirth) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.phone = phone;
-		this.dateOfBirth = dateOfBirth;
-	}
+    public Customer() {
+    }
 
-  // getters & setters
-	public String getId() {
-		return id;
-	}
+    public Customer(String id, String name, String phone, String dateOfBirth) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.dateOfBirth = dateOfBirth;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    // getters & setters
+    public String getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
-        public void setPhone(String phone) {
-                this.phone = phone;
-        }
-        
-	public String getDateOfBirth() {
-		return dateOfBirth;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-}	
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+}

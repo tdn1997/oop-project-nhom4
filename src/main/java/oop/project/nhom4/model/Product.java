@@ -15,7 +15,7 @@ public class Product {
     }
 
     public Product(long id, String name, double price, String description, int stockQuantity,
-                   Timestamp createdAt, Timestamp updatedAt) {
+            Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -29,6 +29,7 @@ public class Product {
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -36,6 +37,7 @@ public class Product {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -43,6 +45,7 @@ public class Product {
     public double getPrice() {
         return price;
     }
+
     public void setPrice(double price) {
         this.price = price;
     }
@@ -50,6 +53,7 @@ public class Product {
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -57,6 +61,7 @@ public class Product {
     public int getStockQuantity() {
         return stockQuantity;
     }
+
     public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
@@ -64,6 +69,7 @@ public class Product {
     public Timestamp getCreatedAt() {
         return createdAt;
     }
+
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
@@ -71,6 +77,7 @@ public class Product {
     public Timestamp getUpdatedAt() {
         return updatedAt;
     }
+
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }

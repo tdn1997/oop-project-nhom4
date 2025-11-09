@@ -9,7 +9,7 @@ public class DatabaseConnectionManager {
     private final String url = "jdbc:mysql://localhost:3306/oop_project_nhom4_db";
     private final String user = "root";
     private final String pass = "mysecretpassword";
-    
+
     private Connection connection;
 
     public Connection getConnection() {

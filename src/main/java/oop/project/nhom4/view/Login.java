@@ -1,17 +1,31 @@
 package oop.project.nhom4.view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.sql.Connection;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+
 import oop.project.nhom4.controller.CustomerController;
 import oop.project.nhom4.dao.CustomerDAO;
 import oop.project.nhom4.database.DatabaseConnectionManager;
-import oop.project.nhom4.view.Index;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 
 public class Login extends JFrame {
 
@@ -101,12 +115,12 @@ public class Login extends JFrame {
         pfPassword.setColumns(15);
         panelRight.add(pfPassword, gbc);
 
-//        btnCancel = new JButton("Đóng");
-//        styleActionButton(btnCancel);
-//        gbc.gridx = 0;
-//        gbc.gridy = 3;
-//        gbc.gridwidth = 1;
-//        panelRight.add(btnCancel, gbc);
+        // btnCancel = new JButton("Đóng");
+        // styleActionButton(btnCancel);
+        // gbc.gridx = 0;
+        // gbc.gridy = 3;
+        // gbc.gridwidth = 1;
+        // panelRight.add(btnCancel, gbc);
 
         btnLogin = new JButton("Đăng nhập");
         styleActionButton(btnLogin);
@@ -119,10 +133,10 @@ public class Login extends JFrame {
 
         // Button actions
         btnLogin.addActionListener(e -> loginAction());
-//        btnCancel.addActionListener(e -> {
-//            tfUsername.setText("");
-//            pfPassword.setText("");
-//        });
+        // btnCancel.addActionListener(e -> {
+        // tfUsername.setText("");
+        // pfPassword.setText("");
+        // });
     }
 
     private void styleTextField(JTextField textField) {
