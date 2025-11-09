@@ -179,19 +179,19 @@ public class Login extends JFrame {
                 CustomerDAO khachhangDAO = new CustomerDAO(connection);
 
                 // 3. Khởi tạo View
-                Index myFrame = new Index();
+                Index index = new Index();
 
                 // 4. Khởi tạo Controller (truyền View và DAO vào)
-                CustomerController controller = new CustomerController(myFrame, khachhangDAO);
+                CustomerController controller = new CustomerController(index, khachhangDAO);
 
                 // 5. Kết nối View với Controller
-                myFrame.setController(controller);
+                index.setController(controller);
 
                 // 6. Controller hiển thị dữ liệu ban đầu
                 controller.loadDataToView();
 
                 // 7. Hiển thị giao diện
-                myFrame.setVisible(true);
+                index.setVisible(true);
             });
             this.dispose();
         } else {

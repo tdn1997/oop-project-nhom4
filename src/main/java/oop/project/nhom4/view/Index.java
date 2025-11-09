@@ -2,6 +2,7 @@ package oop.project.nhom4.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -11,11 +12,16 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.font.TextAttribute;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -34,10 +40,12 @@ import javax.swing.SortOrder;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import oop.project.nhom4.controller.PurchaseController;
 import oop.project.nhom4.model.Customer;
 
 public class Index extends JFrame {
@@ -276,22 +284,62 @@ public class Index extends JFrame {
         return panel;
     }
 
-    public void updateTable(List<Customer> customers) {
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[] { "ID", "Họ tên", "Số điện thoại (+84)", "Ngày sinh" });
+    private CustomerPurchase customerPurchase;
 
-        for (Customer kh : customers) {
+    public void updateTable(List<Customer> customers) {
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        model.setColumnIdentifiers(new String[] { "ID", "Họ tên", "Số điện thoại (+84)", "Ngày sinh", "Số đơn hàng" });
+
+        for (Customer c : customers) {
             model.addRow(new Object[] {
-                    kh.getId(),
-                    kh.getName(),
-                    kh.getPhone(),
-                    kh.getDateOfBirth()
+                    c.getId(),
+                    c.getName(),
+                    c.getPhone(),
+                    c.getDateOfBirth(),
+                    c.getPurchaseCount()
             });
         }
         table.setModel(model);
         sorter = new TableRowSorter<>(model);
         table.setRowSorter(sorter);
         Collator viCollator = Collator.getInstance(new Locale("vi", "VN"));
+
+        DefaultTableCellRenderer clickableRenderer = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                    boolean isSelected, boolean hasFocus, int row, int column) {
+
+                JLabel lbl = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row,
+                        column);
+                lbl.setHorizontalAlignment(SwingConstants.CENTER);
+
+                int purchaseCount = (int) table.getValueAt(row, 4);
+
+                if (purchaseCount > 0) {
+                    lbl.setForeground(new Color(0, 102, 204));
+                    // bold + underline
+                    Font fnt = lbl.getFont().deriveFont(Font.BOLD);
+                    Map<TextAttribute, Object> attrs = new HashMap<>(fnt.getAttributes());
+                    attrs.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+                    lbl.setFont(fnt.deriveFont(attrs));
+                } else {
+                    // disabled look
+                    lbl.setForeground(Color.GRAY);
+                    lbl.setFont(lbl.getFont().deriveFont(Font.PLAIN));
+                }
+
+                Map<TextAttribute, Object> attributes = new java.util.HashMap<>(lbl.getFont().getAttributes());
+                lbl.setFont(lbl.getFont().deriveFont(attributes));
+
+                return lbl;
+            }
+        };
+        table.getColumnModel().getColumn(4).setCellRenderer(clickableRenderer);
 
         sorter.setComparator(1, new Comparator<String>() {
             @Override
@@ -305,6 +353,35 @@ public class Index extends JFrame {
         if (cbSortOptions != null) {
             cbSortOptions.setSelectedIndex(0);
         }
+
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = table.rowAtPoint(e.getPoint());
+                int col = table.columnAtPoint(e.getPoint());
+
+                if (col == 4 && row != -1) {
+                    int purchaseCount = (int) table.getValueAt(row, 4);
+
+                    if (purchaseCount == 0) {
+                        return; // disabled
+                    }
+
+                    if (customerPurchase != null) {
+                        customerPurchase.setVisible(false);
+                    }
+
+                    String customerId = (String) table.getValueAt(row, 0);
+                    String customerName = (String) table.getValueAt(row, 1);
+
+                    customerPurchase = new CustomerPurchase(customerId, customerName);
+                    PurchaseController controller = new PurchaseController(customerPurchase);
+                    controller.loadDataToView(customerId);
+
+                    customerPurchase.setVisible(true);
+                }
+            }
+        });
     }
 
     public void showAddMode() {
@@ -347,7 +424,7 @@ public class Index extends JFrame {
             return null;
         }
 
-        return new Customer(id, name, phone, dateOfBirth);
+        return new Customer(id, name, phone, dateOfBirth, 0);
     }
 
     public String getSelectedCustomerId() {
