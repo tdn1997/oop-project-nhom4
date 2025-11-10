@@ -3,6 +3,7 @@ package oop.project.nhom4.view;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.text.NumberFormat;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -14,7 +15,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import oop.project.nhom4.controller.ProductController;
@@ -66,16 +69,38 @@ public class ProductFrame extends JFrame {
         formPanel.setVisible(false); // 🔹 Hide initially
 
         // ======== Table ========
-        model = new DefaultTableModel(new Object[] { "ID", "Tên", "Giá", "Số lượng tồn", "Mô tả" }, 0) {
+        model = new DefaultTableModel(new Object[] { "ID", "Tên", "Giá (vnđ)", "Số lượng tồn", "Mô tả" }, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
+
         };
 
         table = new JTable(model);
         table.setRowHeight(25);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        NumberFormat nf = NumberFormat.getNumberInstance();
+        nf.setGroupingUsed(true); // ✅ show "16,000,000" instead of 16000000
+        nf.setMaximumFractionDigits(2);
+        nf.setMinimumFractionDigits(0);
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer() {
+            @Override
+            protected void setValue(Object value) {
+                if (value instanceof Number) {
+                    setText(nf.format(((Number) value).doubleValue()));
+                } else {
+                    setText(value == null ? "" : value.toString());
+                }
+            }
+        };
+        leftRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+        // Apply to all columns by default
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setCellRenderer(leftRenderer);
+        }
+
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, BorderLayout.CENTER);
 
@@ -118,18 +143,23 @@ public class ProductFrame extends JFrame {
         });
 
         btnDelete.addActionListener(e -> {
-            int row = table.getSelectedRow();
-            if (row < 0) {
-                JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xóa.");
-                return;
-            }
-            long id = (long) model.getValueAt(row, 0);
-            int confirm = JOptionPane.showConfirmDialog(this, "Xóa sản phẩm đã chọn?", "Xác nhận",
-                    JOptionPane.YES_NO_OPTION);
-            if (confirm == JOptionPane.YES_OPTION && productController.delete(id)) {
-                loadProducts();
-                clearForm();
-                JOptionPane.showMessageDialog(this, "Xóa sản phẩm thành công!");
+            try {
+
+                int row = table.getSelectedRow();
+                if (row < 0) {
+                    JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xóa.");
+                    return;
+                }
+                long id = (long) model.getValueAt(row, 0);
+                int confirm = JOptionPane.showConfirmDialog(this, "Xóa sản phẩm đã chọn?", "Xác nhận",
+                        JOptionPane.YES_NO_OPTION);
+                if (confirm == JOptionPane.YES_OPTION && productController.delete(id)) {
+                    loadProducts();
+                    clearForm();
+                    JOptionPane.showMessageDialog(this, "Xóa sản phẩm thành công!");
+                }
+            } catch (Exception err) {
+                JOptionPane.showMessageDialog(this, "Xóa sản phẩm thất bại!");
             }
         });
 
