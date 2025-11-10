@@ -14,13 +14,13 @@ import javax.swing.table.DefaultTableModel;
 
 import oop.project.nhom4.model.Purchase;
 
-public class CustomerPurchase extends JFrame {
+public class CustomerPurchaseFrame extends JFrame {
     private JTable purchaseTable;
     private DefaultTableModel model;
     private String customerId;
     private JLabel lblCustomerName;
 
-    public CustomerPurchase(String customerId, String customerName) {
+    public CustomerPurchaseFrame(String customerId, String customerName) {
         this.customerId = customerId;
         setTitle("Danh sách đơn hàng của " + customerName);
         setSize(800, 500);

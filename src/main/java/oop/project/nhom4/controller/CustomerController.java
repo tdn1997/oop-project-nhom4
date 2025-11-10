@@ -24,14 +24,15 @@ import org.jfree.data.general.DefaultPieDataset;
 
 import oop.project.nhom4.dao.CustomerDAO;
 import oop.project.nhom4.model.Customer;
-import oop.project.nhom4.view.Index;
+import oop.project.nhom4.view.IndexFrame;
+import oop.project.nhom4.view.ProductFrame;
 
 public class CustomerController implements ActionListener {
 
-    private final Index view;
+    private final IndexFrame view;
     private final CustomerDAO dao;
 
-    public CustomerController(Index view, CustomerDAO dao) {
+    public CustomerController(IndexFrame view, CustomerDAO dao) {
         this.view = view;
         this.dao = dao;
     }
@@ -70,6 +71,9 @@ public class CustomerController implements ActionListener {
                 break;
             case "Thống kê":
                 handleShowStats();
+                break;
+            case "Sản phẩm":
+                handleShowProducts();
                 break;
             case "Xuất dữ liệu":
                 handleExport();
@@ -143,6 +147,11 @@ public class CustomerController implements ActionListener {
     private void handleReset() {
         view.clearSearchField();
         loadDataToView();
+    }
+
+    private void handleShowProducts() {
+        ProductFrame frame = new ProductFrame();
+        frame.setVisible(true);
     }
 
     private void handleShowStats() {

@@ -3,7 +3,7 @@ package oop.project.nhom4;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-import oop.project.nhom4.view.Login;
+import oop.project.nhom4.view.LoginFrame;
 
 public class App {
 
@@ -15,7 +15,7 @@ public class App {
         }
 
         SwingUtilities.invokeLater(() -> {
-            new Login().setVisible(true);
+            new LoginFrame().setVisible(true);
         });
     }
 }
