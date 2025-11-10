@@ -7,13 +7,13 @@ import java.util.List;
 import oop.project.nhom4.dao.PurchaseDAO;
 import oop.project.nhom4.database.DatabaseConnectionManager;
 import oop.project.nhom4.model.Purchase;
-import oop.project.nhom4.view.CustomerPurchase;
+import oop.project.nhom4.view.CustomerPurchaseFrame;
 
 public class PurchaseController {
     private final PurchaseDAO purchaseDAO;
-    private final CustomerPurchase view;
+    private final CustomerPurchaseFrame view;
 
-    public PurchaseController(CustomerPurchase view) {
+    public PurchaseController(CustomerPurchaseFrame view) {
         DatabaseConnectionManager myConnect = new DatabaseConnectionManager();
         Connection connection = myConnect.getConnection();
         this.purchaseDAO = new PurchaseDAO(connection);

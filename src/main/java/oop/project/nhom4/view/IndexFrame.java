@@ -48,7 +48,7 @@ import javax.swing.table.TableRowSorter;
 import oop.project.nhom4.controller.PurchaseController;
 import oop.project.nhom4.model.Customer;
 
-public class Index extends JFrame {
+public class IndexFrame extends JFrame {
 
     // Định nghĩa màu sắc và font chữ
     private final Color COLOR_BG = new Color(25, 25, 112);
@@ -70,10 +70,10 @@ public class Index extends JFrame {
     private JButton btnOk, btnCancel;
     private JButton btnAdd, btnUpdate, btnDelete;
     private JButton btnSearch, btnReset;
-    private JButton btnStats, btnExport;
+    private JButton btnStats, btnExport, btnProduct;
     private JLabel sidebarTitleLabel; // Để thay đổi tiêu đề
 
-    public Index() {
+    public IndexFrame() {
         setTitle("Quản Lý Khách Hàng");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(1124, 650));
@@ -102,6 +102,7 @@ public class Index extends JFrame {
         btnReset.addActionListener(controller);
         btnStats.addActionListener(controller);
         btnExport.addActionListener(controller);
+        btnProduct.addActionListener(controller);
     }
 
     private JPanel createSidebarPanel() {
@@ -271,12 +272,16 @@ public class Index extends JFrame {
         JPanel statsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         statsPanel.setOpaque(false);
 
+        btnProduct = createButton("Sản phẩm");
+        styleActionButton(btnProduct);
+
         btnStats = createButton("Thống kê");
         styleActionButton(btnStats);
 
         btnExport = createButton("Xuất dữ liệu");
         styleActionButton(btnExport);
 
+        statsPanel.add(btnProduct);
         statsPanel.add(btnStats);
         statsPanel.add(btnExport);
         panel.add(statsPanel, BorderLayout.EAST);
@@ -284,7 +289,7 @@ public class Index extends JFrame {
         return panel;
     }
 
-    private CustomerPurchase customerPurchase;
+    private CustomerPurchaseFrame customerPurchase;
 
     public void updateTable(List<Customer> customers) {
         DefaultTableModel model = new DefaultTableModel() {
@@ -374,7 +379,7 @@ public class Index extends JFrame {
                     String customerId = (String) table.getValueAt(row, 0);
                     String customerName = (String) table.getValueAt(row, 1);
 
-                    customerPurchase = new CustomerPurchase(customerId, customerName);
+                    customerPurchase = new CustomerPurchaseFrame(customerId, customerName);
                     PurchaseController controller = new PurchaseController(customerPurchase);
                     controller.loadDataToView(customerId);
 
@@ -582,17 +587,6 @@ public class Index extends JFrame {
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn.setOpaque(true);
         btn.setContentAreaFilled(true);
-    }
-
-    private void styleDialogButton(JButton btn) {
-        btn.setFont(FONT_MAIN);
-        btn.setBackground(Color.WHITE);
-        btn.setForeground(COLOR_SECONDARY);
-        btn.setFocusPainted(false);
-        btn.setBorder(BorderFactory.createLineBorder(COLOR_SECONDARY, 2));
-        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btn.setMargin(new Insets(8, 15, 8, 15));
-        btn.setContentAreaFilled(false);
     }
 
     private String getFirstName(String fullName) {

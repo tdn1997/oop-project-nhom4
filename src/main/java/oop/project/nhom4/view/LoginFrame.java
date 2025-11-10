@@ -27,7 +27,7 @@ import oop.project.nhom4.controller.CustomerController;
 import oop.project.nhom4.dao.CustomerDAO;
 import oop.project.nhom4.database.DatabaseConnectionManager;
 
-public class Login extends JFrame {
+public class LoginFrame extends JFrame {
 
     private final Color COLOR_BG = new Color(25, 25, 112);
     private final Color COLOR_PRIMARY = new Color(0, 0, 128);
@@ -41,7 +41,7 @@ public class Login extends JFrame {
     private JButton btnLogin;
     private JButton btnCancel;
 
-    public Login() {
+    public LoginFrame() {
         setTitle("Quản Lý Khách Hàng");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1124, 650);
@@ -179,7 +179,7 @@ public class Login extends JFrame {
                 CustomerDAO khachhangDAO = new CustomerDAO(connection);
 
                 // 3. Khởi tạo View
-                Index index = new Index();
+                IndexFrame index = new IndexFrame();
 
                 // 4. Khởi tạo Controller (truyền View và DAO vào)
                 CustomerController controller = new CustomerController(index, khachhangDAO);

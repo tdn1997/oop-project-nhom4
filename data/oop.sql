@@ -52,14 +52,15 @@ CREATE TABLE `product` (
 -- Đang đổ dữ liệu cho bảng `product`
 INSERT INTO `product` (name, description, price, stock_quantity)
 VALUES
-('iPhone 15', 'Apple smartphone, 128GB storage', 999.99, 50),
-('Samsung Galaxy S24', 'Android flagship phone', 899.50, 40),
-('MacBook Air M3', 'Apple laptop, 13-inch', 1199.00, 20),
-('Dell XPS 13', 'Windows ultrabook, 16GB RAM', 1099.00, 25),
-('Sony WH-1000XM5', 'Noise cancelling headphones', 399.00, 30),
-('Logitech MX Master 3S', 'Wireless mouse', 129.00, 60),
-('Apple Watch Series 9', 'Smartwatch, GPS version', 449.00, 35),
-('iPad Air', 'Apple tablet, 10.9-inch', 699.00, 40);
+('iPhone 15', 'Điện thoại thông minh Apple, bộ nhớ 128GB', 24999999, 50),
+('Samsung Galaxy S24', 'Điện thoại Android cao cấp', 22499999, 40),
+('MacBook Air M3', 'Máy tính xách tay Apple, màn hình 13 inch', 29999999, 20),
+('Dell XPS 13', 'Laptop Windows cao cấp, RAM 16GB', 27999999, 25),
+('Sony WH-1000XM5', 'Tai nghe chống ồn cao cấp', 6499999, 30),
+('Logitech MX Master 3S', 'Chuột không dây', 3229999, 60),
+('Apple Watch Series 9', 'Đồng hồ thông minh, phiên bản GPS', 11299999, 35),
+('iPad Air', 'Máy tính bảng Apple, màn hình 10.9 inch', 17999999, 40);
+
 
 -- Cấu trúc bảng cho bảng `purchase`
 CREATE TABLE `purchase` (

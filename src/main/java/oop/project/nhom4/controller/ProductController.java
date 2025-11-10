@@ -5,12 +5,15 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import oop.project.nhom4.dao.ProductDAO;
+import oop.project.nhom4.database.DatabaseConnectionManager;
 import oop.project.nhom4.model.Product;
 
 public class ProductController {
     private final ProductDAO productDAO;
 
-    public ProductController(Connection connection) {
+    public ProductController() {
+        DatabaseConnectionManager myConnect = new DatabaseConnectionManager();
+        Connection connection = myConnect.getConnection();
         this.productDAO = new ProductDAO(connection);
     }
 
