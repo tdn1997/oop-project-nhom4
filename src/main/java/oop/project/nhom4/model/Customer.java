@@ -5,16 +5,18 @@ public class Customer {
     private String name;
     private String phone;
     private String dateOfBirth;
+    private Integer purchaseCount;
 
     public Customer() {
     }
 
-    public Customer(String id, String name, String phone, String dateOfBirth) {
+    public Customer(String id, String name, String phone, String dateOfBirth, Integer purchaseCount) {
         super();
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.dateOfBirth = dateOfBirth;
+        this.purchaseCount = purchaseCount;
     }
 
     // getters & setters
@@ -48,5 +50,9 @@ public class Customer {
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Integer getPurchaseCount() {
+        return purchaseCount;
     }
 }

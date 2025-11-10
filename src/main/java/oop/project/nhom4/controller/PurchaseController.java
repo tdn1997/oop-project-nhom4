@@ -5,13 +5,19 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import oop.project.nhom4.dao.PurchaseDAO;
+import oop.project.nhom4.database.DatabaseConnectionManager;
 import oop.project.nhom4.model.Purchase;
+import oop.project.nhom4.view.CustomerPurchase;
 
 public class PurchaseController {
     private final PurchaseDAO purchaseDAO;
+    private final CustomerPurchase view;
 
-    public PurchaseController(Connection connection) {
+    public PurchaseController(CustomerPurchase view) {
+        DatabaseConnectionManager myConnect = new DatabaseConnectionManager();
+        Connection connection = myConnect.getConnection();
         this.purchaseDAO = new PurchaseDAO(connection);
+        this.view = view;
     }
 
     public boolean create(String customerId, Timestamp purchaseDate, double totalAmount,
@@ -51,5 +57,10 @@ public class PurchaseController {
 
     public boolean delete(long id) {
         return purchaseDAO.delete(id);
+    }
+
+    public void loadDataToView(String customerId) {
+        List<Purchase> purchases = purchaseDAO.getByCustomerId(customerId);
+        view.loadPurchases(purchases);
     }
 }

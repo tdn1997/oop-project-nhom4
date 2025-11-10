@@ -29,13 +29,16 @@ public class CustomerDAO {
             String name = rs.getString("name");
             String phone = rs.getString("phone");
             String dob = rs.getString("date_of_birth");
-            customers.add(new Customer(id, name, phone, dob));
+            Integer purchaseCount = rs.getInt("purchase_count");
+            customers.add(new Customer(id, name, phone, dob, purchaseCount));
         }
         return customers;
     }
 
     public List<Customer> getAll() {
-        String sqlCommand = "SELECT * FROM " + table;
+        String sqlCommand = "select c.*, count(p.id) as purchase_count from customer c\n" + //
+                "left join purchase p on c.id = p.customer_id\n" + //
+                "group by c.id";
         try (Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(sqlCommand)) {
             return mapResultSetToKhachhangList(rs);
