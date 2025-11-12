@@ -35,7 +35,7 @@ docker run --name my-mysql \
 You can import the database in one of two ways:
 
 #### Using MySQL Workbench:
-1. Create a new database named **`oop_project_nhom4_db`**  
+1. Create a new database named **`oop_project_nhom8_db`**  
 2. Open and execute the SQL file located at:  
    ```
    ./data/oop.sql
@@ -44,8 +44,8 @@ You can import the database in one of two ways:
 #### Using the Command Line:
 ```bash
 mysql -u root -p
-CREATE DATABASE oop_project_nhom4_db;
-USE oop_project_nhom4_db;
+CREATE DATABASE oop_project_nhom8_db;
+USE oop_project_nhom8_db;
 SOURCE ./data/oop.sql;
 ```
 

@@ -1,4 +1,4 @@
-package oop.project.nhom4.view;
+package oop.project.nhom8.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,9 +23,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
-import oop.project.nhom4.controller.CustomerController;
-import oop.project.nhom4.dao.CustomerDAO;
-import oop.project.nhom4.database.DatabaseConnectionManager;
+import oop.project.nhom8.controller.CustomerController;
+import oop.project.nhom8.dao.CustomerDAO;
+import oop.project.nhom8.database.DatabaseConnectionManager;
 
 public class LoginFrame extends JFrame {
 

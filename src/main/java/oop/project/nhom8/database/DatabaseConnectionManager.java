@@ -1,4 +1,4 @@
-package oop.project.nhom4.database;
+package oop.project.nhom8.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DatabaseConnectionManager {
 
-    private final String url = "jdbc:mysql://localhost:3306/oop_project_nhom4_db";
+    private final String url = "jdbc:mysql://localhost:3306/oop_project_nhom8_db";
     private final String user = "root";
     private final String pass = "mysecretpassword";
 

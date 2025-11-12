@@ -1,4 +1,4 @@
-package oop.project.nhom4.controller;
+package oop.project.nhom8.controller;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -22,10 +22,10 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 
-import oop.project.nhom4.dao.CustomerDAO;
-import oop.project.nhom4.model.Customer;
-import oop.project.nhom4.view.IndexFrame;
-import oop.project.nhom4.view.ProductFrame;
+import oop.project.nhom8.dao.CustomerDAO;
+import oop.project.nhom8.model.Customer;
+import oop.project.nhom8.view.IndexFrame;
+import oop.project.nhom8.view.ProductFrame;
 
 public class CustomerController implements ActionListener {
 

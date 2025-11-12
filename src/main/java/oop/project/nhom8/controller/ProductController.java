@@ -1,12 +1,12 @@
-package oop.project.nhom4.controller;
+package oop.project.nhom8.controller;
 
 import java.sql.Connection;
 import java.sql.Timestamp;
 import java.util.List;
 
-import oop.project.nhom4.dao.ProductDAO;
-import oop.project.nhom4.database.DatabaseConnectionManager;
-import oop.project.nhom4.model.Product;
+import oop.project.nhom8.dao.ProductDAO;
+import oop.project.nhom8.database.DatabaseConnectionManager;
+import oop.project.nhom8.model.Product;
 
 public class ProductController {
     private final ProductDAO productDAO;

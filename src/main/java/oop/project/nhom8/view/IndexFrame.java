@@ -1,4 +1,4 @@
-package oop.project.nhom4.view;
+package oop.project.nhom8.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -45,8 +45,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import oop.project.nhom4.controller.PurchaseController;
-import oop.project.nhom4.model.Customer;
+import oop.project.nhom8.controller.PurchaseController;
+import oop.project.nhom8.model.Customer;
 
 public class IndexFrame extends JFrame {
 

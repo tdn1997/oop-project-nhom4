@@ -1,4 +1,4 @@
-package oop.project.nhom4.view;
+package oop.project.nhom8.view;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -12,7 +12,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import oop.project.nhom4.model.Purchase;
+import oop.project.nhom8.model.Purchase;
 
 public class CustomerPurchaseFrame extends JFrame {
     private JTable purchaseTable;

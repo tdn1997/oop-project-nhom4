@@ -1,4 +1,4 @@
-package oop.project.nhom4.model;
+package oop.project.nhom8.model;
 
 public class Customer {
     private String id;

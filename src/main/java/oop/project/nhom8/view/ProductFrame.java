@@ -1,4 +1,4 @@
-package oop.project.nhom4.view;
+package oop.project.nhom8.view;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -20,8 +20,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import oop.project.nhom4.controller.ProductController;
-import oop.project.nhom4.model.Product;
+import oop.project.nhom8.controller.ProductController;
+import oop.project.nhom8.model.Product;
 
 public class ProductFrame extends JFrame {
     private final ProductController productController;

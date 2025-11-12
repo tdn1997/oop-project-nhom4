@@ -1,4 +1,4 @@
-package oop.project.nhom4.dao;
+package oop.project.nhom8.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import oop.project.nhom4.model.Customer;
+import oop.project.nhom8.model.Customer;
 
 public class CustomerDAO {
 

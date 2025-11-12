@@ -1,9 +1,9 @@
-package oop.project.nhom4;
+package oop.project.nhom8;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-import oop.project.nhom4.view.LoginFrame;
+import oop.project.nhom8.view.LoginFrame;
 
 public class App {
 

@@ -1,4 +1,4 @@
-package oop.project.nhom4.dao;
+package oop.project.nhom8.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import oop.project.nhom4.model.Product;
+import oop.project.nhom8.model.Product;
 
 public class ProductDAO {
     private final Connection connection;
