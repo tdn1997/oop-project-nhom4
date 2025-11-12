@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Name",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "oop.project.nhom4.App",
+            "vmArgs": "-XX:-TieredCompilation"
+        }
+    ]
+}

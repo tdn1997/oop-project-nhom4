@@ -87,11 +87,10 @@ public class CustomerDAO {
 
     public List<Customer> search(String columnName, String query) {
         String safeColumnName = columnName;
-        if (columnName.equals("date_of_birth")) {
-            safeColumnName = "`date_of_birth`";
-        }
 
-        String sqlCommand = "SELECT * FROM " + table + " WHERE " + safeColumnName + " LIKE ?";
+        String sqlCommand = "select c.*, count(p.id) as purchase_count FROM customer c\n" + //
+                " left join purchase p on c.id = p.customer_id WHERE c." + safeColumnName
+                + " LIKE ? group by c.id";
         try (PreparedStatement pst = connection.prepareStatement(sqlCommand)) {
             pst.setString(1, "%" + query + "%");
             try (ResultSet rs = pst.executeQuery()) {

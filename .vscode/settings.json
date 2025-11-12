@@ -1,0 +1,25 @@
+{
+  // Use 4 spaces for Java indentation
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+
+  // Apply only to Java files
+  "[java]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true
+  },
+
+  // Maven settings
+  "maven.executable.path": "mvn",
+  "maven.terminal.useJavaHome": true,
+
+  // Optional: Auto-format imports and organize code
+  "java.format.settings.url": "https://raw.githubusercontent.com/redhat-developer/vscode-java/master/java-formatter.xml",
+  "java.format.settings.profile": "GoogleStyle",
+  "java.saveActions.organizeImports": true,
+
+  // Optional: Enable automatic build
+  "java.configuration.updateBuildConfiguration": "automatic"
+}
