@@ -1,4 +1,4 @@
-# 🧱 OOP Project - Nhóm 4
+# 🧱 OOP Project - Nhóm 8
 
 ## 📦 Setup Guide
 

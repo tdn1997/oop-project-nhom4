@@ -60,7 +60,7 @@ public class LoginFrame extends JFrame {
         panelLeft.setBackground(COLOR_BG);
         panelLeft.setPreferredSize(new Dimension(1124 * 40 / 100, 0));
         panelLeft.setLayout(new GridBagLayout());
-        JLabel lblBrand = new JLabel("Nhóm 4");
+        JLabel lblBrand = new JLabel("Nhóm 8");
         lblBrand.setForeground(COLOR_TEXT_LIGHT);
         lblBrand.setFont(new Font("Segoe UI", Font.BOLD, 48));
         panelLeft.add(lblBrand);
