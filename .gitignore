@@ -39,9 +39,6 @@ nbdist
 .classpath
 .settings
 
-# VS Code
-.vscode/
-
 # === OS / Editor files ===
 .DS_Store
 Thumbs.db
